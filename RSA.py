@@ -94,11 +94,11 @@ def decrypt(privateKey, encrypted_message):
 
 
 message = input("Enter a message: ")
-val = input("Type A for encryption and B for Decryption.")
+val = input("Type A for encryption")
 value = val.upper()
 if value == "A":
     print(f"Your message after encryption is: {encrypt(message, publicKey)} ")
     print(f"The original message was:{decrypt(privateKey, encrypt(message, publicKey))}")
-elif value == "B":
-    print(f" :{decrypt(privateKey, message)}")
+else:
+    return None
 
