@@ -64,8 +64,7 @@ def inverse(e, t=totient):
 publicKey = (e, n)
 d = inverse(e, totient)
 privateKey = (d, n)
-print("The private key: ", d)
-print(e)
+
 
 def encrypt(message, publicKey):
     e, n = publicKey
@@ -83,13 +82,13 @@ def decrypt(privateKey, encrypted_message):
     d, n = privateKey
     x = ""
     new = encrypted_message.split("o")
-    print(new)
+  
     for i in new:
         if i == "":
             continue
         else:
             m = pow(int(i), d, n)
-            print(m)
+            
             c = chr(m)
             x += c
     return x
@@ -101,6 +100,7 @@ value = val.upper()
 if value == "A":
     print(f"Your message after encryption is: {encrypt(message, publicKey)} ")
     print(f"The original message was:{decrypt(privateKey, encrypt(message, publicKey))}")
+#Inorder to decrypt a given message you should use specific p and q on line 26 and 27.
 elif value == "B":
     print(f" Your message is :{decrypt(privateKey, message)}")
 
