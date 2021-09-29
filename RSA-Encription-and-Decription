@@ -13,7 +13,7 @@ primes = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 7
 
 
 def primeGenerator():
-    prime = random.randint(2 ** 20, (2 ** 22) - 1)
+    prime = random.randint(2 ** 14, (2 ** 18) - 1)
     if prime % 2 == 0:
         return primeGenerator()
     for i in primes:
@@ -23,8 +23,8 @@ def primeGenerator():
 
 
 p = primeGenerator()
-# p = 1271807
-# q = 2389969
+# p = 997
+# q = 983
 q = primeGenerator()
 n = p * q
 totient = (p - 1) * (q - 1)
