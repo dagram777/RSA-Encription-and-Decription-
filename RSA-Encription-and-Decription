@@ -60,3 +60,14 @@ d = inverse(e, totient)
 privateKey = (d, n)
 print("The private key: ", (d, n))
 print("The public key: ",(e, n))
+
+def encrypt(message, publicKey):
+    e, n = publicKey
+    word = ""
+    message.upper()
+    for i in message:
+        m = ord(i)
+        encrypted = pow(m, e, n)
+        word += str(encrypted)
+        word += "o"
+    return word
