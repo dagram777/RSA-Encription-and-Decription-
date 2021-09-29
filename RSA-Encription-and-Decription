@@ -31,3 +31,32 @@ totient = (p - 1) * (q - 1)
 print("p=", p, "q=", q)
 print("n=", n)
 print("Totient =", totient)
+
+
+
+
+
+
+def Pulverizer(a, b):
+    if (a % b == 0):
+        return (b, 0, 1)
+    else:
+        gcd, s, t = Pulverizer(b, a % b)
+        s = s - ((a // b) * t)
+        print("%d = %d*(%d) + (%d)*(%d)" % (gcd, a, t, s, b))
+        return (gcd, t, s)
+
+
+def inverse(e, t=totient):
+    gcd, s, _ = Pulverizer(e, t)
+    if (gcd != 1):
+        return None
+    else:
+        return s % t
+
+
+publicKey = (e, n)
+d = inverse(e, totient)
+privateKey = (d, n)
+print("The private key: ", (d, n))
+print("The public key: ",(e, n))
