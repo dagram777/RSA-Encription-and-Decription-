@@ -33,9 +33,17 @@ print("n=", n)
 print("Totient =", totient)
 
 
+def GCD(e, t=totient):
+    while t != 0:
+        e, t = t, e % t
+    return e
 
 
-
+for i in range(5000, 10000):
+    if (GCD(i, totient) == 1):
+        e = i
+        break
+print("e= ", e)
 
 def Pulverizer(a, b):
     if (a % b == 0):
