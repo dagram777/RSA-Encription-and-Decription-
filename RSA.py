@@ -23,12 +23,14 @@ def primeGenerator():
 
 
 p = primeGenerator()
-# p = 1554073
-# q = 3243397
+# p = 1271807
+# q = 2389969
 q = primeGenerator()
 n = p * q
 totient = (p - 1) * (q - 1)
-print(p, q)
+print("p=", p, "q=", q)
+print("n=", n)
+print("Totient =", totient)
 
 
 def GCD(e, t=totient):
@@ -41,6 +43,7 @@ for i in range(5000, 10000):
     if (GCD(i, totient) == 1):
         e = i
         break
+print("e= ", e)
 
 
 def Pulverizer(a, b):
@@ -49,22 +52,25 @@ def Pulverizer(a, b):
     else:
         gcd, s, t = Pulverizer(b, a % b)
         s = s - ((a // b) * t)
+        print("%d = %d*(%d) + (%d)*(%d)" % (gcd, a, t, s, b))
         return (gcd, t, s)
 
 
 def inverse(e, t=totient):
     gcd, s, _ = Pulverizer(e, t)
-
-
     if (gcd != 1):
         return None
     else:
         return s % t
 
+
 publicKey = (e, n)
 d = inverse(e, totient)
 privateKey = (d, n)
+print("The private key: ", (d, n))
+print("The public key: ",(e, n))
 
+# print(e)
 
 def encrypt(message, publicKey):
     e, n = publicKey
@@ -82,13 +88,13 @@ def decrypt(privateKey, encrypted_message):
     d, n = privateKey
     x = ""
     new = encrypted_message.split("o")
-  
+    print(new)
     for i in new:
         if i == "":
             continue
         else:
             m = pow(int(i), d, n)
-            
+            # print(m)
             c = chr(m)
             x += c
     return x
@@ -100,7 +106,6 @@ value = val.upper()
 if value == "A":
     print(f"Your message after encryption is: {encrypt(message, publicKey)} ")
     print(f"The original message was:{decrypt(privateKey, encrypt(message, publicKey))}")
-#Inorder to decrypt a given message you should use specific p and q on line 26 and 27.
+# Inorder to decrypt a message you need to use specific values oof p and q. like the ones on line 26 and 27.
 elif value == "B":
     print(f" Your message is :{decrypt(privateKey, message)}")
-
